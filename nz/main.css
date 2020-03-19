@@ -27,6 +27,7 @@ white a:visited {
 header nav img{
     border-radius: 50%;
 }
-.black {
+
+a:link, a:visited{
     color: black;
 }
