@@ -35,3 +35,7 @@ header nav address{
     font-size: 0.9em;
     font-size: italic;
 }
+main{
+    max-width: 70%;
+    margin: auto;
+}
