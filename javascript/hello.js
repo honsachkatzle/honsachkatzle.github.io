@@ -66,3 +66,10 @@ if (myAge > 18) {
     console.log("Leider unter 18")
 
 }
+
+//Schleifen
+
+for (let index = 0; index < 10; index++) {
+    console.log = ("Schleife $(i)");
+    
+}
