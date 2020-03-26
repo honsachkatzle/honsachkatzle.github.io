@@ -17,8 +17,13 @@ let lastname = "Smith";
 let fullname = "Jeffrey Lebowski";
 console.log(fullname);
 
-let template = "Dein Highscor sind $(highscore) Punkte"
+let template = "Dein Highscor sind $(highscore) Punkte";
 
 let isOver18 = true;
-console.log(isOver18)
+console.log(isOver18);
+
+let age = 19;
+console.log("über 18?", age > 18);
+
+let
 
