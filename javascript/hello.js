@@ -98,3 +98,9 @@ function calcAge(birthYear) {
     return 2020 -birthYear;
     
 }
+
+console.log("MAx ist ${calcAge(1977)} Jahre alt (ca.)");
+console.log("John ist ${calcAge(1988)} Jahre alt (ca.)");
+
+birthYear.forEach(year => {}
+
