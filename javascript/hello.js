@@ -5,7 +5,7 @@
 //message = "Hello World";
 //alert(message);
 
-const  LINK_COLOR = "'ff0000";
+const LINK_COLOR = "'ff0000";
 console.log("link bitte in der Farbe", LINK_COLOR);
 
 let highscore = 520233;
@@ -25,9 +25,9 @@ console.log(isOver18);
 let age = 19;
 console.log("über 18?", age > 18);
 
-let participants = [ "John" , "Jane" , "Max"];
+let participants = ["John", "Jane", "Max"];
 console.log(participants)
-console.log("Einträge im Array:" , participants.length)
+console.log("Einträge im Array:", participants.length)
 console.log(participants[2]);
 
 let gameHighscores = [2099, 3010, 3333, 5000];
@@ -42,13 +42,14 @@ let user = {
 console.log(user)
 console.log(user.firstname)
 user.highscore = 200;
-user{"highscore ever"} = 400;
+user ["highscore ever"
+ = 400];
 console.log(user)
 
 let a = 2;
 let b = 4;
-console.log(a+b);
-console.log(b/(a-1));
+console.log(a + b);
+console.log(b / (a - 1));
 a++;
 console.log(a);
 
@@ -59,7 +60,7 @@ console.log("über 18? ${myAge > 18}")
 if (myAge > 18) {
 
     console.log("Glückwunsch über 18");
-    
+
 } else {
 
     console.log("Leider unter 18")
