@@ -73,3 +73,9 @@ for (let index = 0; index < 10; index++) {
     console.log = ("Schleife $(i)");
     
 }
+
+for (let J= 0; J < participants; J++) {
+    const participant = array[J];
+    console.log("Teilnehmr* in ${J} $ {participant})
+    
+}
