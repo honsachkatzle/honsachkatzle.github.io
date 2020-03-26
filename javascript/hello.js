@@ -15,3 +15,10 @@ let firstname = "John";
 let lastname = "Smith";
 
 let fullname = "Jeffrey Lebowski";
+console.log(fullname);
+
+let template = "Dein Highscor sind $(highscore) Punkte"
+
+let isOver18 = true;
+console.log(isOver18)
+
