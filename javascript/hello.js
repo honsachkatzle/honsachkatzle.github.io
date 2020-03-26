@@ -25,5 +25,8 @@ console.log(isOver18);
 let age = 19;
 console.log("über 18?", age > 18);
 
-let
+let participants = [ "John" , "Jane" , "Max"];
+console.log(participants)
+console.log("Einträge im Array:" , participants.length)
+console.log(participants[2]);
 
