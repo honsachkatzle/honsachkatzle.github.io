@@ -96,9 +96,9 @@ participants.forEach(participant => {
 }
 
 //Funktionen
-   
+
 function showAge(birthYear) {       //Warum ist Funktion als Rot eingezeichnet
-    console.log('Du bist ca. ${2020 - birthYear} Jahre alt');
+   console.log('Du bist ca. ${2020 - birthYear} Jahre alt');
     
 }
 
@@ -113,5 +113,29 @@ function calcAge(birthYear) {
 console.log('MAx ist ${calcAge(1977)} Jahre alt (ca.)');
 console.log('John ist ${calcAge(1988)} Jahre alt (ca.)');
 
-birthYear.forEach(year => {}
+let birthYears = [ 1964, 1977, 1980, 2001, 2004 ];
+console.log(birthYears)
+
+birthYears. forEach(year => {
+    console.log('Geboren ¢{year), heute ca. ¢{calcAge(year)}Jahre alt.');
+});
+
+let users = [                                               //let deklariert eine Variable im Gültigkeitsbereich des lokalen Blocks    
+    { firstname:"John", lastname: "Smith", birthYear:1960},
+    { firstname:"Jane", lastname: "Doe" , birthYear: 1970 },
+    { firstname:"Max" , lastname:"Musterman" , birthYear: 1990},
+
+];
+
+console.log(users)                                          //um sich eingabe anzeigen zu lassen, wie bie r,python print
+
+users.forEach(user => {
+    console.log('${user.firstname} ist oder wird heuer ${calcAge(user.birthYear)} Jahre alt.')
+})
+
+
+
+
+
+
 
