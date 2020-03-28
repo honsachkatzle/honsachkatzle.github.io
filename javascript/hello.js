@@ -127,11 +127,33 @@ let users = [                                               //let deklariert ein
 
 ];
 
-console.log(users)                                          //um sich eingabe anzeigen zu lassen, wie bie r,python print
+console.log(users);                                          //um sich eingabe anzeigen zu lassen, wie bie r,python print
 
 users.forEach(user => {
     console.log('${user.firstname} ist oder wird heuer ${calcAge(user.birthYear)} Jahre alt.')
-})
+});
+
+let firstParagraph = document.querySelector("#First");  //gitb das erste Element innerhalb eines Dokuments zurück,welches dem angegebenen Selekto entspricht
+console.log(firstParagraph);
+
+//firstParagraph.remove();
+
+firstParagraph.innerHTML = "Test"                       //
+firstParagraph.getElementsByClassName.color = "red";
+
+let indetedParas = document.querySelectorAll(".ident");
+console.log(indetedParas);
+indetedParas.innerHTML = "Test2";
+indetedParas.forEach((para, index) => {
+    console.log('Data attribut LAT ${para.dataset.lat}');
+    para.innerHTML = 'Absatz ${index}';
+    if ( index % 2 == 0){
+        para.style.color = "red";
+    } else {
+        para.style.color = "blue"
+    }
+    
+    });
 
 
 
