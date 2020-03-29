@@ -1,15 +1,15 @@
 
 
-let Map = document.querySelector("#map") //Querverbindung zur Karte welche im Skript verortet ist
-let lat = Map.dataset.lat;
-let lng = Map.dataset.lng;
-let markerTitle = Map.dataset.title;
+let map = document.querySelector("#map") //Querverbindung zur Karte welche im Skript verortet ist
+let lat = map.dataset.lat;
+let lng = map.dataset.lng;
+
 
 //AChtung variablen immer gleich bennenen
 
 
 
-let mymap = L.map(map).setView([lat, lng], 13);
+var mymap = L.map('map').setView([lat, lng], 13);
 
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
     maxZoom: 17,
@@ -17,5 +17,3 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
 
 
-let marker = L.marker([lat, lng]).addTo(mymap);
-marker.bindPopup(markerTitle).openPopup();
