@@ -19,3 +19,20 @@ L.control.layers({
     "Esri.NatGeoWorldMap": L.tileLayer.provider("Esri.NatGeoWorldMap")
 
 }).addTo(map)
+
+L.marker([0,0]).addTo(map);
+
+console.log(CONFIRMED);
+for (let index = 1; index < CONFIRMED.length; index++) {
+    let row = Confirmed[i];
+    let val = row[row.length-1]
+    let mrk = L.marker([row[2],row[3]]).addTo(map);
+    mrk.bindPopup('${reg}: ${val}');
+
+    let r = Math.sqrt(val*s/Math)
+    let circle = L.circleMarker([lat,lng],{
+        radius: r
+    }).addTo(map);
+    circle.bindPopup('${reg}: ${val}')
+    
+}
