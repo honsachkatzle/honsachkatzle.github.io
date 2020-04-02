@@ -13,7 +13,9 @@ L.control.layers({
     "OpenTopoMap" : startLayer,
     "OpenStreetMap.Mapnik" : L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "OpenStreetMap.BZH" : L.tileLayer.provider("OpenStreetMap.BZH"),
-    "Stadia.Outdoors" : L.tileLayer.provider("Stadia.Outdoors"),
-    
+    "Thunderforest.OpenCycleMap": L.tileLayer.provider("Thunderforest.OpenCycleMap"),
+    "OpenMapSurfer.Roads": L.tileLayer.provider("OpenMapSurfer.Roads"),
+    "Esri.WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
+    "Esri.NatGeoWorldMap": L.tileLayer.provider("Esri.NatGeoWorldMap")
 
 }).addTo(map)
