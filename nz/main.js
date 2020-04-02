@@ -1,10 +1,8 @@
-
-
 let map = document.querySelector("#map") //Querverbindung zur Karte welche im Skript verortet ist
 let lat = map.dataset.lat;
 let lng = map.dataset.lng;
 
-let title=map.dataset.title;
+let title = map.dataset.title;
 
 //AChtung variablen immer gleich bennenen
 
@@ -21,3 +19,4 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 L.marker([lat, lng]).addTo(mymap) // Marker einbauen
     .bindPopup(title)
     .openPopup();
+
