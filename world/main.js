@@ -12,6 +12,8 @@ let map = L.map("map", {
 L.control.layers({
     "OpenTopoMap" : startLayer,
     "OpenStreetMap.Mapnik" : L.tileLayer.provider("OpenStreetMap.Mapnik"),
+    "OpenStreetMap.BZH" : L.tileLayer.provider("OpenStreetMap.BZH"),
+    "Stadia.Outdoors" : L.tileLayer.provider("Stadia.Outdoors"),
     
 
-})
+}).addTo(map)
