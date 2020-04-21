@@ -22,29 +22,25 @@ L.control.layers({
     ])
 }).addTo(map);
 
-// let walk = L.geoJason(SPARZIERGANG, {
-    // pointToLayer: function(point, latlng){
-        // let marker = L.marker(latlng);
-        // marker.bindPopup("popup");
+let walk = L.geoJason(SPARZIERGANG, {
+    pointToLayer: function(point, latlng) {
+     let marker = L.marker(latlng);
+     console.log("Point", point);
+      marker.bindPopup(`<h3>${point.properties.NAME}</h3>
+      <p><a target="links" href="${point.properties.WEITERE_INF}">Link</a></p>
+      ');
+      return marker;
+    }
+    }) .addTo(map);
+
+
+
+
+        //  marker.bindPopup("popup");
         // return L.circleMarker(latlang,{ color: "red", radius: 8 });
     // }
+    
 // }).addTo(map);
-
-
-// let walk = L.geoJson(SPAZIERGANG, {
-    // pointToLayer: function(point, latlng) {
-        // let marker = L.marker(latlng);
-        // console.log("Point", point);
-        // marker.bindPopup(`<h3>${point.properties.NAME}</h3>
-        // <p><a target="links" href="${point.properties.WEITERE_INF}">Link</a></p>
-        // `);
-        // return marker;
-    // }
-// }).addTo(map); 
-
-
-
-
 // let wandern = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json"
 
 // let.geoJason.ajax(wander,{
@@ -59,4 +55,4 @@ L.control.layers({
 // L.geoJason.ajax(heritage,{
     // style: function()
     // return { color:“salmon"}
-// })
+// }; 
