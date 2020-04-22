@@ -1,4 +1,4 @@
-const SPARZIERGANG = {
+const SPAZIERGANG = {
     "type": "FeatureCollection",
     "totalFeatures": 126,
     "features": [{
