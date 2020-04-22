@@ -22,7 +22,8 @@ L.control.layers({
     ])
 }).addTo(map);
 
-// let walk = L.geoJason(SPARZIERGANG, {
+let walk = L.geoJson(SPAZIERGANG).addTo(map);
+// , {
     // pointToLayer: function(point, latlng) {
     //  let marker = L.marker(latlng);
     //  console.log("Point", point);
