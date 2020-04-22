@@ -8,6 +8,8 @@ let map = L.map("map", {
     ]
 });
 
+let walkGroup = L.featureGroup().addTo(map);        //neue feature group erzeugen um genau den gewollten Kartenausschnitt zu bekommen    
+
 L.control.layers({
     "BasemapAT.grau": startLayer,
     "BasemapAT": L.tileLayer.provider("BasemapAT"),
@@ -20,6 +22,9 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.orthofoto"),
         L.tileLayer.provider("BasemapAT.overlay")
     ])
+}, {
+        "Stadtspziergang(Punkte)": walkGroup
+    
 }).addTo(map);
 
 
@@ -46,7 +51,13 @@ L.control.layers({
         
     }
 
-}) .addTo(map);
+}) .addTo(walkGroup);
+
+walk.on("data:loaded", function(){
+    console.log('data loaded!');
+})
+
+map.fitBounds(walkGroup.getBounds());
 
 // , {
     // pointToLayer: function(point, latlng) {
