@@ -55,6 +55,7 @@ L.control.layers({
 
 walk.on("data:loaded", function(){
     console.log('data loaded!');
+    map.fitBounds(walkGroup.getBounds());    //Einstellen der Karte genau auf die Ausschnitte anpassen 
 })
 
 map.fitBounds(walkGroup.getBounds());
