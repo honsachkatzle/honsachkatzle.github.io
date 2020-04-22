@@ -10,6 +10,7 @@ let map = L.map("map", {
 
 let walkGroup = L.featureGroup().addTo(map); //neue feature group erzeugen um genau den gewollten Kartenausschnitt zu bekommen    
 let sightGroup = L.markerClusterGroup().addTo(map);
+let heritageGroup = L.featureGroup().addTo(map);
 
 L.control.layers({
     "BasemapAT.grau": startLayer,
@@ -24,7 +25,9 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-     "Stadtspaziergang(Punkte)": sightGroup
+    "Stadtspaziergang (Punkte)": sightGroup,
+    "Wanderungen": walkGroup,
+    "Weltkulturerbe": heritageGroup
 }).addTo(map);
 
 
@@ -73,7 +76,7 @@ let sightUrl = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature
                         weight: 5
                     };
                 }
-            }).addTo(map);
+            }).addTo(walkGroup);
 
             let heritage = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WELTKULTERBEOGD&srsName=EPSG:4326&outputFormat=json";
 
@@ -90,7 +93,7 @@ let sightUrl = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature
          <p>${feature.properties.INFO}</p>
          `);
                 }
-            }).addTo(map);
+            }).addTo(heritageGroup);
 
             // , {
             // pointToLayer: function(point, latlng) {
