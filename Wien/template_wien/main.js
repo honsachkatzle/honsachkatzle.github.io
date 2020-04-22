@@ -22,16 +22,16 @@ L.control.layers({
     ])
 }).addTo(map);
 
-let walk = L.geoJason(SPARZIERGANG, {
-    pointToLayer: function(point, latlng) {
-     let marker = L.marker(latlng);
-     console.log("Point", point);
-      marker.bindPopup(`<h3>${point.properties.NAME}</h3>
-      <p><a target="links" href="${point.properties.WEITERE_INF}">Link</a></p>
-      ');
-      return marker;
-    }
-    }) .addTo(map);
+// let walk = L.geoJason(SPARZIERGANG, {
+    // pointToLayer: function(point, latlng) {
+    //  let marker = L.marker(latlng);
+    //  console.log("Point", point);
+    //   marker.bindPopup(`<h3>${point.properties.NAME}</h3>
+    //   <p><a target="links" href="${point.properties.WEITERE_INF}">Link</a></p>
+    //   ');
+    //   return marker;
+    // }
+    // }) .addTo(map);
 
 
 
@@ -55,4 +55,4 @@ let walk = L.geoJason(SPARZIERGANG, {
 // L.geoJason.ajax(heritage,{
     // style: function()
     // return { color:“salmon"}
-// }; 
+//   
