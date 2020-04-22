@@ -22,7 +22,13 @@ L.control.layers({
     ])
 }).addTo(map);
 
-let walk = L.geoJson(SPAZIERGANG).addTo(map);
+let walk = L.geoJson(SPAZIERGANG, {
+    pointToLayer: function(point, latlng) {        //  Syntax für jedn Punkt in datenfile Pop up hinzufügen; an die die vorhandenen Punkte fügen, "function"Funktion mit zwei Parameter (),
+    return L.circleMarker(latlng,{color:"red",radius: 8 });                        //neuen MArker zeichnen mit return;marker name L.circle 
+        
+    }
+
+}) .addTo(map);
 // , {
     // pointToLayer: function(point, latlng) {
     //  let marker = L.marker(latlng);
