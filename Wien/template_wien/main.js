@@ -26,8 +26,10 @@ let walk = L.geoJson(SPAZIERGANG, {
     pointToLayer: function(point, latlng) {        //  Syntax für jedn Punkt in datenfile Pop up hinzufügen; an die die vorhandenen Punkte fügen, "function"Funktion mit zwei Parameter (),
     let marker = L.marker(latlng);
     console.log("Point", point);                                                //Thematische Inhalte ausgeben
-    marker.bindPopup("popup");                         //pop up für marker einfügen
-    return marker;                        //neuen MArker zeichnen mit return;
+    marker.bindPopup(`<h3>${point.properties.NAME}</h3>                         //pop up für marker einfügen;packtik Syntax
+    <p><a target="links" href="$(point.properties.WEITERE_INF}">Link</a></p>
+    `);
+    return marker;                                                                //neuen MArker zeichnen mit return;
 
         
     }
