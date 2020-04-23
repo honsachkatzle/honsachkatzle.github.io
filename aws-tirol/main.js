@@ -8,7 +8,8 @@ let map = L.map("map", {
 
 let overlay = {
     stations: L.featureGroup(),
-    temperature: L.featureGroup()
+    temperature: L.featureGroup(),
+    windgschwindigkeit: L.featureGroup()
 }
 
 L.control.layers({
@@ -25,7 +26,8 @@ L.control.layers({
     ])
 }, {
     "Wetterstationen Tirol": overlay.stations,
-    "Temperatur (°C)": overlay.temperature
+    "Temperatur (°C)": overlay.temperature,
+    "windgeschwindigkeit(ms)": overlay.windgeschwindigkeit,
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -54,13 +56,13 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-let drawTemperature = function(jsonData) {
+let drawTemperature = function (jsonData) {
     console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.LT;
         },
-        pointToLayer: function(feature, latlng) {
+        pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -77,11 +79,26 @@ let drawTemperature = function(jsonData) {
 // 3. einen neuen Stil .label-wind im CSS von main.css
 // 4. die Funktion drawWind in data:loaded aufrufen
 
-let drawWind = function(jsonData) {
+let drawWind = function (jsonData) {
+    console.log("aus der Funktion", jsonData);
+    L.geoJson(jsonData, {
+        filter: function (feature) {
+            return feature.properties.WH;
+        },
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
+                icon: L.divIcon({
+                    html: `<div class="label-Wind">${feature.properties.LT.toFixed(1)}</div>`,
+                    className: "ignore-me"
+                })
+            })
+        }
+    }).addTo(overlay.windgeschwindigkeit)
 
 };
 
-aws.on("data:loaded", function() {
+aws.on("data:loaded", function () {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());

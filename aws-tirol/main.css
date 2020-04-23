@@ -55,3 +55,13 @@ main h2 {
         -1px  1px 0 white,
          1px  1px 0 white
 } 
+
+.label-Wind{
+    font-size: medium;
+    font-weight: bolder;
+    padding: 3ex;
+    border: 1px grey;
+    background-color: rgb(80, 92, 63);
+    display: flex;
+
+}
