@@ -98,11 +98,12 @@ let heritage = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature
     // }
 
     style: function (feature) {                      //mit if/else Abfrage typen zuweisen lassen und ausgeben
-        if (feature.properties.TYP = "1") {
+        if (feature.properties.TYP = "1") {          // functioniert das hervorheben der layer da sie sich überlappen?
             return {
                 color: "red",
                 fillOpacity: 0.3
             };
+         
         } else if (feature.properties.TYP == "2") {
             return {
                 color: "yellow",
