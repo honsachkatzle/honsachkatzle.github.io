@@ -82,19 +82,41 @@ L.geoJson.ajax(wandern, {
 
 let heritage = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WELTKULTERBEOGD&srsName=EPSG:4326&outputFormat=json";
 
-L.geoJson.ajax(heritage, {
-    style: function () {
-        return {
-            color: "salmon",
-            fillOpacity: 0.3
-        };
-    },
-    onEachFeature: function (feature, layer) {
-        console.log("Feature: ", feature);
-        layer.bindPopup(`<h3>${feature.properties.NAME}</h3>
-         <p>${feature.properties.INFO}</p>
-         `);
-    }
+ L.geoJson.ajax(heritage, {
+    // style: function (feature) {
+        // return {
+            // (feature.properties.TYP == "1")}{;
+            // color: "red",
+            // fillOpacity: 0.3
+        // };
+    // },
+    // onEachFeature: function (feature, layer) {
+        // console.log("Feature: ", feature);
+        // layer.bindPopup(`<h3>${feature.properties.NAME}</h3>
+        //  <p>${feature.properties.INFO}</p>
+        //  `);
+    // }
+
+    style: function (feature) {                      //mit if/else Abfrage typen zuweisen lassen und ausgeben
+        if (feature.properties.TYP = "1") {
+            return {
+                color: "red",
+                fillOpacity: 0.3
+            };
+        } else if (feature.properties.TYP == "2") {
+            return {
+                color: "yellow",
+                fillOpacity: 0.3,
+               
+            };
+        }
+},
+onEachFeature: function (feature, layer) {                    //popup für namen/info für das jeweilige Object zuweisen
+    console.log("Feature: ", feature);
+    layer.bindPopup(`<h3>${feature.properties.NAME}</h3>
+        <p>${feature.properties.INFO}</p>
+        `);
+}
 }).addTo(heritageGroup);
 
 // , {
