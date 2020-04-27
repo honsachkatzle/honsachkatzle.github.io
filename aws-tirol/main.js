@@ -9,7 +9,7 @@ let map = L.map("map", {
     ]
 });
 
-let overlay = {                           //Objekt definieren: ist feture group; vorbereiten mehrere Lyer ein zu bauen
+let overlay = {                           //Objekt definieren: ist feture group; vorbereiten mehrere Lyer ein zu bauen; verschiedene overlays definiern 
     stations: L.featureGroup(),
     temperature: L.featureGroup(),
     wind: L.featureGroup()
@@ -28,18 +28,18 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-    "Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax
-  //  "Temperatur (°C)": overlay.temperature,
-  //  "Windgeschwindigkeit (km/h)": overlay.wind
+    "Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax, einbauen der overlays in die feature control/*  */
+    "Temperatur (°C)": overlay.temperature,
+    "Windgeschwindigkeit (km/h)": overlay.wind
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
 
-let aws = L.geoJson.ajax(awsUrl, {
+ let aws = L.geoJson.ajax(awsUrl, {
     filter: function (feature) {
         //console.log("Feature in filter: ", feature);
         return feature.properties.LT;
-    },
+    }, 
     pointToLayer: function (point, latlng) {
         // console.log("point: ", point);
         let marker = L.marker(latlng).bindPopup(`
@@ -59,7 +59,7 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-/*  let getColor = function(val, ramp) {
+  let getColor = function(val, ramp) {
     //console.log(val, ramp);
     let col = "red";
 
@@ -73,7 +73,7 @@ let aws = L.geoJson.ajax(awsUrl, {
         //console.log(val,pair);
     }
     return col;
-};
+}; 
 
 //console.log(color);
 
@@ -81,15 +81,15 @@ let drawTemperature = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
-            return feature.properties.LT;
+          return feature.properties.LT;
         },
         pointToLayer: function(feature, latlng) {
             let color = getColor(feature.properties.LT,COLORS.temperature);
             return L.marker(latlng, {
-                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
-                icon: L.divIcon({
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,                               //pop up selbst definieren
+                icon: L.divIcon({                                                                                        //Direkt anzeigen von Werten welche implementiert werden sollen
                     html: `<div class="label-temperature" style="background-color:${color}">${feature.properties.LT.toFixed(1)}</div>`,
-                    className: "ignore-me" // dirty hack
+                    className: "ignore-me" // dirty hack um zu vermeiden dass verschiedene styles gelöscht werden müssen
                 })
             })
         }
@@ -101,7 +101,7 @@ let drawTemperature = function(jsonData) {
 // 3. einen neuen Stil .label-wind im CSS von main.css
 // 4. die Funktion drawWind in data:loaded aufrufen
 
-let drawWind = function(jsonData) {
+  let drawWind = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
@@ -119,17 +119,17 @@ let drawWind = function(jsonData) {
             })
         }
     }).addTo(overlay.wind);
-};/*  */
+};
 
 aws.on("data:loaded", function() {
-    console.log(aws.toGeoJSON());
+    //console.log(aws.toGeoJSON());
     drawtemperature(aws.toGeoJSON());     //in leaflet doc nachsehen: um temperatur zu bekommen: aws.toGEoJSON
    // drawWind(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());      //Boundary auf die Stationen setzen
-   // overlay.temparature.addTo(map)
-    //overlay.wind.addTo(map);
+    overlay.temparature.addTo(map)
+    overlay.wind.addTo(map);
 
-    overlay.stations.addTo(map);
+    //overlay.stations.addTo(map)
 
-    //console.log(COLORS);
+    console.log(COLORS);
 });

@@ -49,7 +49,7 @@ main h2 {
     border: 1px solid gray;
     background-color: silver;
     display: inline;
-    text-shadow:
+    text-shadow:                                                       /* stylen: weiße linie rund um text definieren */
         -1px -1px 0 white,
          1px -1px 0 white,
         -1px  1px 0 white,
