@@ -125,9 +125,11 @@ aws.on("data:loaded", function() {
     console.log(aws.toGeoJSON());
     drawtemperature(aws.toGeoJSON());     //in leaflet doc nachsehen: um temperatur zu bekommen: aws.toGEoJSON
    // drawWind(aws.toGeoJSON());
-   // map.fitBounds(overlay.stations.getBounds());
-    overlay.temparature.addTo(map)
-    overlay.wind.addTo(map);
+    map.fitBounds(overlay.stations.getBounds());      //Boundary auf die Stationen setzen
+   // overlay.temparature.addTo(map)
+    //overlay.wind.addTo(map);
+
+    overlay.stations.addTo(map);
 
     //console.log(COLORS);
 });
