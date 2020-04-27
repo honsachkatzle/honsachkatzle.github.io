@@ -1,8 +1,11 @@
 let startLayer = L.tileLayer.provider("BasemapAT.grau");
 
 let map = L.map("map", {
+    center: [47.3, 11.5],
+    zoom: 8,
     layers: [
         startLayer
+    
     ]
 });
 
@@ -26,8 +29,8 @@ L.control.layers({
     ])
 }, {
     "Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax
-    "Temperatur (°C)": overlay.temperature,
-    "Windgeschwindigkeit (km/h)": overlay.wind
+  //  "Temperatur (°C)": overlay.temperature,
+  //  "Windgeschwindigkeit (km/h)": overlay.wind
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -56,7 +59,7 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-let getColor = function(val, ramp) {
+/*  let getColor = function(val, ramp) {
     //console.log(val, ramp);
     let col = "red";
 
@@ -116,14 +119,14 @@ let drawWind = function(jsonData) {
             })
         }
     }).addTo(overlay.wind);
-};
+};/*  */
 
 aws.on("data:loaded", function() {
-    //console.log(aws.toGeoJSON());
-    drawTemperature(aws.toGeoJSON());
-    drawWind(aws.toGeoJSON());
-    map.fitBounds(overlay.stations.getBounds());
-
+    console.log(aws.toGeoJSON());
+    drawtemperature(aws.toGeoJSON());     //in leaflet doc nachsehen: um temperatur zu bekommen: aws.toGEoJSON
+   // drawWind(aws.toGeoJSON());
+   // map.fitBounds(overlay.stations.getBounds());
+    overlay.temparature.addTo(map)
     overlay.wind.addTo(map);
 
     //console.log(COLORS);
