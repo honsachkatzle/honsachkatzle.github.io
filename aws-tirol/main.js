@@ -6,7 +6,7 @@ let map = L.map("map", {
     ]
 });
 
-let overlay = {
+let overlay = {                           //Objekt definieren: ist feture group; vorbereiten mehrere Lyer ein zu bauen
     stations: L.featureGroup(),
     temperature: L.featureGroup(),
     wind: L.featureGroup()
@@ -25,7 +25,7 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-    "Wetterstationen Tirol": overlay.stations,
+    "Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax
     "Temperatur (°C)": overlay.temperature,
     "Windgeschwindigkeit (km/h)": overlay.wind
 }).addTo(map);
