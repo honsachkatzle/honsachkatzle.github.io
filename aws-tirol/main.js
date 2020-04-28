@@ -30,11 +30,11 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-    //"Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax, einbauen der overlays in die feature control/*  */
-    //"Temperatur (°C)": overlay.temperature,
-    //"Windgeschwindigkeit (km/h)": overlay.wind
-    "schneehoehe (cm)": overlay.schneehoehe                  //
-    //"Luftfeuchte (%)": overlay.luftfeuchte
+    "Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax, einbauen der overlays in die feature control/*  */
+    "Temperatur (°C)": overlay.temperature,
+    "Windgeschwindigkeit (km/h)": overlay.wind,
+    "schneehoehe (cm)": overlay.schneehoehe,                  //
+    "Luftfeuchte (%)": overlay.luftfeuchte,
 
 }).addTo(map);
 
@@ -89,11 +89,11 @@ let drawSchneehohe = function (jsonData) {
           return feature.properties.HS;
         },
         pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.RH,COLORS.luftfeuchte);
+            let color = getColor(feature.properties.HS,COLORS.schneehoehe);
             return L.marker(latlng, {
-                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,                               //pop up selbst definieren
+                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}cm)`,                               //pop up selbst definieren
                     icon: L.divIcon({
-                        html: `<div class="label-luftfeuchte" style="background-color:${color}">${feature.properties.LT.toFixed(1)}</div>`,
+                        html: `<div class="label-schneehoehe" style="background-color:${color}">${feature.properties.HS.toFixed(1)}</div>`,
                         className: "ignore-me" // dirty hack um zu vermeiden dass verschiedene styles gelöscht werden müssen
                     })
                 })
@@ -109,22 +109,22 @@ let drawluftfeuchte = function (jsonData) {
           return feature.properties.RH;
         },
         pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.HS,COLORS.schneehoehe);
+            let color = getColor(feature.properties.RH,COLORS.luftfeuchte);
             return L.marker(latlng, {
-                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,                               //pop up selbst definieren
+                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}%)`,                               //pop up selbst definieren
                     icon: L.divIcon({
-                        html: `<div class="label-schneehoehe" style="background-color:${color}">${feature.properties.LT.toFixed(1)}</div>`,
+                        html: `<div class="label-luftfeuchte" style="background-color:${color}">${feature.properties.RH.toFixed(1)}</div>`,
                         className: "ignore-me" // dirty hack um zu vermeiden dass verschiedene styles gelöscht werden müssen
                     })
                 })
             }
-        }).addTo(overlay.schneehoehe);
+        }).addTo(overlay.luftfeuchte);
 
     
 };
 
 
-/*  let drawTemperature = function(jsonData) {
+ let drawTemperature = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
@@ -141,14 +141,14 @@ let drawluftfeuchte = function (jsonData) {
             })
         }
     }).addTo(overlay.temperature);
-} */
+} 
 
 // 1. neues overlay definieren, zu L.control.layers hinzufügen und default anzeigen
 // 2. die Funktion drawWind als 1:1 Kopie von drawTemperature mit Anpassungen (in km/h)
 // 3. einen neuen Stil .label-wind im CSS von main.css
 // 4. die Funktion drawWind in data:loaded aufrufen
 
-  /*  let drawWind = function(jsonData) {
+   let drawWind = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
@@ -166,20 +166,20 @@ let drawluftfeuchte = function (jsonData) {
             })
         }
     }).addTo(overlay.wind);
-}; */
+}; 
 
 aws.on("data:loaded", function() {
     //console.log(aws.toGeoJSON());
-    //drawtemperature(aws.toGeoJSON());     //in leaflet doc nachsehen: um temperatur zu bekommen: aws.toGEoJSON
-    //drawWind(aws.toGeoJSON());
-    //drawLuftfeuschte(aws.toGeoJSON())
-    drawSchneehoehe(aws.toGeoJSON())
+    drawtemperature(aws.toGeoJSON());     //in leaflet doc nachsehen: um temperatur zu bekommen: aws.toGEoJSON
+    drawWind(aws.toGeoJSON());
+    drawLuftfeuchte(aws.toGeoJSON());
+    drawSchneehoehe(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());      //Boundary auf die Stationen setzen
     
-    //overlay.temparature.addTo(map)
-    //overlay.wind.addTo(map);
-    //overlay.stations.addTo(map)
-    //overly.luftfecuhte.addTo(map)
+    overlay.temparature.addTo(map);
+    overlay.wind.addTo(map);
+    overlay.stations.addTo(map);
+    overly.luftfecuhte.addTo(map);
     overlay.schneehoehe.addTo(map);
 
     //console.log(COLORS);

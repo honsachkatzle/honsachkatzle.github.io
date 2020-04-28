@@ -63,5 +63,22 @@ main h2 {
     border: 1px grey;
     background-color: rgb(80, 92, 63);
     display: flex;
+}
+
+.label-schneehoehe{
+    font-size: small;
+    font-weight: lighter;
+    padding-left: 2ex;
+    border: 1px blue;
+    display: inline;
 
 }
+
+.label-luftfeuchte{
+    font-size: medium;
+    font-weight: initial;
+    padding-bottom: 0vh;
+    border: 2px aqua;
+    display: inline-block;
+}
+
