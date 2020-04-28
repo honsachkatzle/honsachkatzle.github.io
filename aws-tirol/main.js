@@ -2,9 +2,6 @@ let startLayer = L.tileLayer.provider("BasemapAT.grau");
 
 let map = L.map("map", {
 
-    center: [47.3, 11.5],
-    zoom: 8,
-    
     layers: [
         startLayer
     
@@ -36,7 +33,7 @@ L.control.layers({
     //"Wetterstationen Tirol": overlay.stations,             //ansprechen des Objects mit dieser Syntax, einbauen der overlays in die feature control/*  */
     //"Temperatur (°C)": overlay.temperature,
     //"Windgeschwindigkeit (km/h)": overlay.wind
-    "Schneehoehe (cm)": overlay.schneehoehe                  //
+    "schneehoehe (cm)": overlay.schneehoehe                  //
     //"Luftfeuchte (%)": overlay.luftfeuchte
 
 }).addTo(map);
@@ -58,7 +55,7 @@ let awsUrl = "https://aws.openweb.cc/stations";
         <li>Lufttemperatur (°C): ${point.properties.LT}</li>
         <li>Windgeschwindigkeit (m/s): ${point.properties.WG || "-"}</li>
         <li>Relative Luftfeuchte (%): ${point.properties.RH || "-"}</li>
-        <li>Schneehöhe (cm): ${point.properties.HS || "-"}</li>
+        <li>Schneehoehe (cm): ${point.properties.HS || "-"}</li>
         </ul>
         <p><a target="plot" href="https://lawine.tirol.gv.at/data/grafiken/1100/standard/tag/${point.properties.plot}.png">Grafik der vorhandenen Messwerte anzeigen</a></p>
         </ul>
@@ -91,8 +88,41 @@ let drawSchneehohe = function (jsonData) {
         filter: function(feature) {
           return feature.properties.HS;
         },
+        pointToLayer: function(feature, latlng) {
+            let color = getColor(feature.properties.RH,COLORS.luftfeuchte);
+            return L.marker(latlng, {
+                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,                               //pop up selbst definieren
+                    icon: L.divIcon({
+                        html: `<div class="label-luftfeuchte" style="background-color:${color}">${feature.properties.LT.toFixed(1)}</div>`,
+                        className: "ignore-me" // dirty hack um zu vermeiden dass verschiedene styles gelöscht werden müssen
+                    })
+                })
+            }
+        }).addTo(overlay.luftfeuchte);
+
     
-},
+};
+
+let drawluftfeuchte = function (jsonData) {
+    L.geoJson(jsonData, {
+        filter: function(feature) {
+          return feature.properties.RH;
+        },
+        pointToLayer: function(feature, latlng) {
+            let color = getColor(feature.properties.HS,COLORS.schneehoehe);
+            return L.marker(latlng, {
+                    title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,                               //pop up selbst definieren
+                    icon: L.divIcon({
+                        html: `<div class="label-schneehoehe" style="background-color:${color}">${feature.properties.LT.toFixed(1)}</div>`,
+                        className: "ignore-me" // dirty hack um zu vermeiden dass verschiedene styles gelöscht werden müssen
+                    })
+                })
+            }
+        }).addTo(overlay.schneehoehe);
+
+    
+};
+
 
 /*  let drawTemperature = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
@@ -150,7 +180,7 @@ aws.on("data:loaded", function() {
     //overlay.wind.addTo(map);
     //overlay.stations.addTo(map)
     //overly.luftfecuhte.addTo(map)
-    overlay.schneehoehe.addTo(map),
+    overlay.schneehoehe.addTo(map);
 
-    console.log(COLORS);
+    //console.log(COLORS);
 });
