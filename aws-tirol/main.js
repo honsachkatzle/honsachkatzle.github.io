@@ -86,7 +86,13 @@ let awsUrl = "https://aws.openweb.cc/stations";
 //console.log(color);
 
 
-let drawSchneehohe =
+let drawSchneehohe = function (jsonData) {
+    L.geoJson(jsonData, {
+        filter: function(feature) {
+          return feature.properties.HS;
+        },
+    
+},
 
 /*  let drawTemperature = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
@@ -144,7 +150,7 @@ aws.on("data:loaded", function() {
     //overlay.wind.addTo(map);
     //overlay.stations.addTo(map)
     //overly.luftfecuhte.addTo(map)
-    overlay.schneehoehe.addTo(map)
+    overlay.schneehoehe.addTo(map),
 
     console.log(COLORS);
 });
