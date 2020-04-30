@@ -34,7 +34,7 @@ L.control.layers({
 //console.log(ADLERBLICKE);
 
 
-
+yy
 for (const blick of ADLERBLICKE) {
     console.log(blick);
     let mrk = L.marker([blick.lat, blick.lng], {
@@ -49,3 +49,11 @@ for (const blick of ADLERBLICKE) {
     mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`);
 }
 overlay.adlerblicke.addTo(map);
+
+ let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
+     async: true
+ });
+
+ gpx.on("loaded", function(evt) {
+     map.fitBounds(evt.target.getBounds());
+ }).addTo(map); 
