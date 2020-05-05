@@ -86,6 +86,12 @@ let pulldown = document.querySelector("#pulldown");
      pulldown.innerHTML += `<option value="${i}">${etappe.titel}</option>`;
  }
 
+ pulldown.onchange = function(evt) {
+    let nr = evt.target.options[evt.target.options.selectedIndex].value;
+    console.log(nr);
+    drawEtappe(nr);
+}
+
 
 
 
