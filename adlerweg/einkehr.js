@@ -1,9 +1,20 @@
 const EINKEHR = [
     [ Etappennummer (9), Lamsenjochhütte, 47.38005, 11.60356 ],
     [ Etappennummer (9), Binsalm, 47.39449, 11.58392  ],
-    [ Etappennummer (11), Engalm, 47.39909 , 11.55850],
-    [ Etappennummer (12), Falkenhütte, 47.39972 , 11.49895 ],
-    [ Etappennummer (13), Einkehrmöglichkeit, Lat, Lng ],
-    [ Etappennummer (14), Einkehrmöglichkeit, Lat, Lng ]
+    [ Etappennummer (9), Engalm, 47.39909 , 11.55850],
+    [ Etappennummer (9), Falkenhütte, 47.39972 , 11.49895 ],
+    [ Etappennummer (10), Falkenhütte, 47.39972, 11.49895 ],
+    [ Etappennummer (10), Karwendelhaus, 47.42726, 11.42159],
+    [ Etappennummer (11), Karwendelhaus, 47.42726, 11.42159 ],
+    [ Etappennummer (11), Kastenalm, 47.36947, 11.43541 ],
+    [ Etappennummer (11), Hallerangerhaus, 47.35477, 11.47718],
+    [ Etappennummer (11), Hallerangeralm, 47.35647, 11.47980],
+    [ Etappennummer (12), Hallerangerhaus, Lat, Lng ],
+    [ Etappennummer (12), Pfeishütte, Lat, Lng ],
+    [ Etappennummer (12), BergstationHafelekar , Lat, Lng ],
+    [ Etappennummer (13), Patscherkofelhaus, Lat, Lng ],
+    [ Etappennummer (13), Boschebenalm, Lat, Lng ],
+    [ Etappennummer (13), Tulfeinalm, Lat, Lng ],
+    [ Etappennummer (14), Solsteinhaus, Lat, Lng ],
     // u.s.w.
 ];
