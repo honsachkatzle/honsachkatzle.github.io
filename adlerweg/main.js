@@ -10,7 +10,8 @@ let map = L.map("map", {
 
 let overlay = {
     adlerblicke: L.featureGroup(),
-    etappen: L.featureGroup()
+    etappen: L.featureGroup(),
+    einkehr: L.featureGroup(),
 };
 
 L.control.layers({
@@ -27,7 +28,8 @@ L.control.layers({
     ])
 }, {
     "Adlerblicke": overlay.adlerblicke,
-    "Adlerweg Etappen": overlay.etappen
+    "Adlerweg Etappen": overlay.etappen,
+    "Einkehrmöglichkeiten":overlay.einkehr,
 }).addTo(map);
 
 //console.log(ETAPPEN);
