@@ -140,6 +140,13 @@ let controlElevation = L.control.elevation({
     detached: true,
     elevationDiv: "#profile",
     followMarker: false
+
 }).addTo(map); 
+
+
+L.control.scale({
+    imperial: false
+
+}).addTo(map);
 
 //https://secure.geonames.org/wikipediaBoundingBoxJSON?formatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=marco_h
