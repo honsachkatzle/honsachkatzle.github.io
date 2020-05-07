@@ -77,7 +77,7 @@ let drawEtappe = function (nr) {
     gpx.on("loaded", function (evt) {
         map.fitBounds(evt.target.getBounds());
         controlElevation.clear();
-         controlElevation.load(`gpx/AdlerwegEtappe${track}.gpx`);
+        controlElevation.load(`gpx/AdlerwegEtappe${track}.gpx`);
     }).addTo(overlay.etappen);
     overlay.etappen.addTo(map);
 
@@ -141,3 +141,5 @@ let controlElevation = L.control.elevation({
     elevationDiv: "#profile",
     followMarker: false
 }).addTo(map); 
+
+//https://secure.geonames.org/wikipediaBoundingBoxJSON?formatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=marco_h
