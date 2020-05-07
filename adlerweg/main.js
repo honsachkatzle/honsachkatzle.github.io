@@ -30,6 +30,7 @@ L.control.layers({
     "Adlerblicke": overlay.adlerblicke,
     "Adlerweg Etappen": overlay.etappen,
     "Einkehrmöglichkeiten":overlay.einkehr,
+    
 }).addTo(map);
 
 //console.log(ETAPPEN);
@@ -114,4 +115,22 @@ pulldown.onchange = function (evt) {
     //console.log(nr);
     drawEtappe(nr);
 }
+let drawEinkehr = function () {
+    for (let einkehr of EINKEHR) {
+        //console.log(einkehr);
+        let mrk = L.marker([einkehr[2],einkehr[3]]).addTo(overlay.einkehr);
+        let mrk = L.marker([einkehr[2],einkehr[3]], {
+            icon: L.icon({
+                iconSize: [32, 37],
+                iconAnchor: [16, 37],
+                popupAnchor: [0, -37],
+                iconUrl: "icons/restaurant.png"
+            })    
+        }).addTo(overlay.einkehr);
+        mrk.bindPopup(`${einkehr[1]} (Etappe ${einkehr[0]})`);
+    }
+};
+drawEinkehr();
+overlay.einkehr.addTo(map);
+
 
