@@ -8,10 +8,11 @@ let map = L.map("map", {
     ]
 });
 
+
 let overlay = {
     adlerblicke: L.featureGroup(),
     etappen: L.featureGroup(),
-    einkehr: L.featureGroup(),
+    einkehr: L.featureGroup()
 };
 
 L.control.layers({
@@ -29,8 +30,7 @@ L.control.layers({
 }, {
     "Adlerblicke": overlay.adlerblicke,
     "Adlerweg Etappen": overlay.etappen,
-    "Einkehrmöglichkeiten":overlay.einkehr,
-    
+    "Einkehrmöglichkeiten": overlay.einkehr
 }).addTo(map);
 
 //console.log(ETAPPEN);
@@ -82,7 +82,7 @@ let drawEtappe = function (nr) {
     for (const key in ETAPPEN[nr]) {
         if (ETAPPEN[nr].hasOwnProperty(key)) {
             let val = ETAPPEN[nr][key];
-            //console.log(`et-${key}`);
+
             let elem = document.querySelector(`#et-${key}`);
             if (elem) {
                 if (key == "einkehr") {
@@ -94,7 +94,7 @@ let drawEtappe = function (nr) {
                     val = `<a href="gpx/AdlerwegEtappe${val}.gpx">GPX</a>`
                 }
                 elem.innerHTML = val;
-                //console.log(val);
+
             }
         }
     }
@@ -118,19 +118,17 @@ pulldown.onchange = function (evt) {
 let drawEinkehr = function () {
     for (let einkehr of EINKEHR) {
         //console.log(einkehr);
-        let mrk = L.marker([einkehr[2],einkehr[3]]).addTo(overlay.einkehr);
-        let mrk = L.marker([einkehr[2],einkehr[3]], {
+   
+        let mrk = L.marker([einkehr[2], einkehr[3]], {
             icon: L.icon({
                 iconSize: [32, 37],
                 iconAnchor: [16, 37],
                 popupAnchor: [0, -37],
                 iconUrl: "icons/restaurant.png"
-            })    
+            })
         }).addTo(overlay.einkehr);
         mrk.bindPopup(`${einkehr[1]} (Etappe ${einkehr[0]})`);
     }
 };
 drawEinkehr();
 overlay.einkehr.addTo(map);
-
-
