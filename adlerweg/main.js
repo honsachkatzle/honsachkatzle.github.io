@@ -80,10 +80,18 @@ let drawEtappe = function (nr) {
 
     for (const key in ETAPPEN[nr]) {
         if (ETAPPEN[nr].hasOwnProperty(key)) {
-            const val = ETAPPEN[nr][key];
+            let val = ETAPPEN[nr][key];
             //console.log(`et-${key}`);
             let elem = document.querySelector(`#et-${key}`);
             if (elem) {
+                if (key == "einkehr") {
+                    val = val.replace(/#/g, ", ");
+                }
+
+                if (key == "track") {
+                    val = val.replace("A", "");
+                    val = `<a href="gpx/AdlerwegEtappe${val}.gpx">GPX</a>`
+                }
                 elem.innerHTML = val;
                 //console.log(val);
             }
